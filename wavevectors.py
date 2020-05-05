@@ -1,3 +1,4 @@
+#%%
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -5,7 +6,8 @@ sns.set()
 
 #%%
 
-angle = 5/360*2*np.pi
+angle = 2/360*2*np.pi
+angleplus = 0
 
 k_W_abs = 2*np.pi/100
 k_w_abs = 2*np.pi/80
@@ -17,7 +19,8 @@ k_W = [k_W_abs,0]
 k_w = [np.cos(angle)*k_w_abs,np.sin(angle)*k_w_abs]
 
 k_R = [-k_R_abs,0]
-k_r = [-np.cos(angle)*k_r_abs,-np.sin(angle)*k_r_abs]
+k_r = [k_W[0]-k_w[0] +k_R[0],k_W[1]-k_w[1] +k_R[1]]
+# k_r = [-np.cos(angle+angleplus)*k_r_abs,-np.sin(angle+angleplus)*k_r_abs]
 
 #%%
 
@@ -43,7 +46,7 @@ V_tracing = V_tracing + [sum(V_tracing)]
 color = ['k']*2 + ['red'] + ['grey']*2 + ['green'] + ["blue"]
 linestyle = ['-'] + [':'] + ['-']*2 + [':'] + ['-']
 
-plt.close(4)
+# plt.close(4)
 plt.figure(num = 4, figsize = (5,5))
 # plt.quiver(X_tracing,Y_tracing,U_tracing,V_tracing, angles='xy', scale_units='xy', scale=1., color = ['grey']*4 + ['red'])
 plt.quiver(X,Y,U,V, angles='xy', scale_units='xy', scale=1., edgecolor = color, linestyle = linestyle, 
